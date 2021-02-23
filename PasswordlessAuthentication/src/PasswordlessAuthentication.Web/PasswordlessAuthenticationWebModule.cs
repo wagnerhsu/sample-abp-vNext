@@ -87,6 +87,7 @@ namespace PasswordlessAuthentication.Web
                 .GetObject<IdentityBuilder>()
                 .AddDefaultTokenProviders()
                 .AddPasswordlessLoginProvider();
+            context.Services.AddSameSiteCookiePolicy();
         }
 
         private void ConfigureUrls(IConfiguration configuration)
@@ -195,6 +196,7 @@ namespace PasswordlessAuthentication.Web
                 app.UseErrorPage();
             }
 
+            app.UseCookiePolicy();
             app.UseCorrelationId();
             app.UseVirtualFiles();
             app.UseRouting();
