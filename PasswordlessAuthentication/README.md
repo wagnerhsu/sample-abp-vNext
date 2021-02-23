@@ -1,3 +1,3 @@
-## Implementing Passwordless Authentication
-
-See the article of this sample: https://community.abp.io/articles/implementing-passwordless-authentication-with-asp.net-core-identity-c25l8koj
+## 2021-02-23
+### 1.0.0
+- Upgrade Abp to 4.2.1
