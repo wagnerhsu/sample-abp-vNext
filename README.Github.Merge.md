@@ -1,0 +1,1 @@
+https://github.com/wagnerhsu/sample-abp-vNext/compare/master...abpframework:master
