@@ -10,6 +10,7 @@
             order: [[1, "asc"]],
             searching: false,
             scrollX: true,
+            sorting: true,
             ajax: abp.libs.datatables.createAjax(acme.bookStore.books.book.getList),
             columnDefs: [
                 {
