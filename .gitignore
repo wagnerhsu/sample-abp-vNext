@@ -360,3 +360,4 @@ MicroserviceDemo/modules/product/src/ProductManagement.Web/Properties/launchSett
 tempkey.jwk
 libs/
 
+/TodoApp/Blazor-EfCore/src/TodoApp.HttpApi.Host/wwwroot/libs
