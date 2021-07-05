@@ -198,7 +198,7 @@ namespace PasswordlessAuthentication.Web
 
             app.UseCookiePolicy();
             app.UseCorrelationId();
-            app.UseVirtualFiles();
+            app.UseStaticFiles();
             app.UseRouting();
             app.UseAuthentication();
             app.UseJwtTokenMiddleware();
