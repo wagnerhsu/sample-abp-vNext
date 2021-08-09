@@ -359,5 +359,5 @@ MicroserviceDemo/modules/product/src/ProductManagement.Web/Properties/launchSett
 
 tempkey.jwk
 libs/
-
+.vscode/
 /TodoApp/Blazor-EfCore/src/TodoApp.HttpApi.Host/wwwroot/libs
