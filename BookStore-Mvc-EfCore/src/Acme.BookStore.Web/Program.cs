@@ -1,8 +1,9 @@
-﻿using System;
-using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Serilog;
 using Serilog.Events;
+using System;
+using Microsoft.Extensions.Configuration;
 
 namespace Acme.BookStore.Web
 {
@@ -10,6 +11,7 @@ namespace Acme.BookStore.Web
     {
         public static int Main(string[] args)
         {
+            var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json", false).Build();
             Log.Logger = new LoggerConfiguration()
 #if DEBUG
                 .MinimumLevel.Debug()
@@ -19,7 +21,7 @@ namespace Acme.BookStore.Web
                 .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
                 .MinimumLevel.Override("Microsoft.EntityFrameworkCore", LogEventLevel.Warning)
                 .Enrich.FromLogContext()
-                .WriteTo.Async(c => c.File("Logs/logs.txt"))
+                .WriteTo.Async(c => c.Seq(configuration.GetValue<string>("SeqServerUrl")))
                 .WriteTo.Async(c => c.Console())
                 .CreateLogger();
 
