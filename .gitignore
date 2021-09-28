@@ -359,3 +359,4 @@ MicroserviceDemo/modules/product/src/ProductManagement.Web/Properties/launchSett
 
 tempkey.jwk
 .vscode/
+libs/
