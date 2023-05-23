@@ -1,19 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Acme.BookStore.Web.Pages.Books
+namespace Acme.BookStore.Web.Pages.Books;
+
+public class IndexModel : PageModel
 {
-    public class IndexModel : PageModel
+    public void OnGet()
     {
-        private readonly ILogger<IndexModel> _logger;
 
-        public IndexModel(ILogger<IndexModel> logger)
-        {
-            _logger = logger;
-        }
-        public void OnGet()
-        {
-            _logger.LogDebug("IndexModel Debug Info");
-        }
     }
 }
