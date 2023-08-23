@@ -13,4 +13,6 @@ public interface IBookAppService :
         CreateUpdateBookDto> //Used to create/update a book
 {
     Task<ListResultDto<AuthorLookupDto>> GetAuthorLookupAsync();
+
+    Task<PagedResultDto<BookDto>> GetFilterListAsync(GetBookListDto input);
 }

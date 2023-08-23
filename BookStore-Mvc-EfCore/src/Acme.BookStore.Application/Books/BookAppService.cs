@@ -106,6 +106,22 @@ public class BookAppService :
         );
     }
 
+    public async Task<PagedResultDto<BookDto>> GetFilterListAsync(GetBookListDto input)
+    {
+        if (input.Sorting.IsNullOrWhiteSpace())
+        {
+            input.Sorting = nameof(Book.Name);
+        }
+
+        var books = await Repository.GetPagedListAsync(input.SkipCount, input.MaxResultCount, input.Sorting);
+        var filteredList = books.WhereIf(!input.Filter.IsNullOrWhiteSpace(),
+            x => x.Name.Contains(input.Filter));
+
+        var list = filteredList.ToList();
+
+        return new PagedResultDto<BookDto>(list.Count(), ObjectMapper.Map<List<Book>, List<BookDto>>(list));
+    }
+
     private static string NormalizeSorting(string sorting)
     {
         if (sorting.IsNullOrEmpty())

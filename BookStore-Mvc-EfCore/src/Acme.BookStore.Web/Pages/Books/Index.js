@@ -8,10 +8,10 @@
             serverSide: true,
             paging: true,
             order: [[1, "asc"]],
-            searching: false,
+            searching: true,
             scrollX: true,
             sorting: true,
-            ajax: abp.libs.datatables.createAjax(acme.bookStore.books.book.getList),
+            ajax: abp.libs.datatables.createAjax(acme.bookStore.books.book.getFilterList),
             columnDefs: [
                 {
                     title: l('Actions'),
