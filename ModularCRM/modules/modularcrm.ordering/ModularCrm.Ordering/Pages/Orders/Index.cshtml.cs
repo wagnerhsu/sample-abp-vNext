@@ -1,26 +1,24 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using ModularCrm.Ordering.Entities;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Volo.Abp.Domain.Repositories;
+using ModularCrm.Ordering.Contracts.Services;
 
 namespace ModularCrm.Ordering.Pages.Orders
 {
     public class IndexModel : PageModel
     {
-        public List<Order> Orders { get; set; }
+        public List<OrderDto> Orders { get; set; }
 
-        private readonly IRepository<Order, Guid> _orderRepository;
+        private readonly IOrderAppService _orderAppService;
 
-        public IndexModel(IRepository<Order, Guid> orderRepository)
+        public IndexModel(IOrderAppService orderAppService)
         {
-            _orderRepository = orderRepository;
+            _orderAppService = orderAppService;
         }
 
         public async Task OnGetAsync()
         {
-            Orders = await _orderRepository.GetListAsync();
+            Orders = await _orderAppService.GetListAsync();
         }
     }
 }
