@@ -11,7 +11,7 @@ $(function () {
             searching: true,
             scrollX: true,
             sorting: true,
-            ajax: abp.libs.datatables.createAjax(acme.bookStore.books.book.getFilterList),
+            ajax: abp.libs.datatables.createAjax(acme.bookStore.books.book.getList),
             columnDefs: [
                 {
                     title: l('Actions'),
