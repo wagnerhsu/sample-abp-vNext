@@ -25,4 +25,8 @@
     <Content Remove="**\*generate-proxy.json" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="ClientProxies\BookClientProxy.Generated.cs~RF96c27d7.TMP" />
+  </ItemGroup>
+
 </Project>
