@@ -1,6 +1,7 @@
 ﻿using Acme.BookStore.Authors;
 using Acme.BookStore.Books;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
 using Volo.Abp.Data;
@@ -43,6 +44,7 @@ public class BookStoreDbContext :
 
     //Identity
     public DbSet<IdentityUser> Users { get; set; }
+
     public DbSet<IdentityRole> Roles { get; set; }
     public DbSet<IdentityClaimType> ClaimTypes { get; set; }
     public DbSet<OrganizationUnit> OrganizationUnits { get; set; }
@@ -50,11 +52,13 @@ public class BookStoreDbContext :
     public DbSet<IdentityLinkUser> LinkUsers { get; set; }
     public DbSet<IdentityUserDelegation> UserDelegations { get; set; }
     public DbSet<IdentitySession> Sessions { get; set; }
+
     // Tenant Management
     public DbSet<Tenant> Tenants { get; set; }
+
     public DbSet<TenantConnectionString> TenantConnectionStrings { get; set; }
 
-    #endregion
+    #endregion Entities from the modules
 
     public DbSet<Book> Books { get; set; }
 
@@ -63,7 +67,12 @@ public class BookStoreDbContext :
     public BookStoreDbContext(DbContextOptions<BookStoreDbContext> options)
         : base(options)
     {
+    }
 
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        base.OnConfiguring(optionsBuilder);
+        optionsBuilder.ReplaceService<IRelationalTypeMappingSource, MyDmTypeMappingSource>();
     }
 
     protected override void OnModelCreating(ModelBuilder builder)
@@ -104,7 +113,6 @@ public class BookStoreDbContext :
 
             b.HasIndex(x => x.Name);
         });
-
 
         /* Configure your own tables/entities inside here */
 
